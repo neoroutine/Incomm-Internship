@@ -1,0 +1,59 @@
+﻿<Window x:Class="VisualAutomationTool.ADCreateUserDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisualAutomationTool"
+        mc:Ignorable="d"
+        Title="Active Directory" Height="650" Width="500" Background="#2e2828">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1c1a1a"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#1c1a1a" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <Label HorizontalAlignment="Center" Content="Création d'un utilisateur sur l'Active Directory" Foreground="White"></Label>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,10,0,0" Height="1"/>
+
+
+            <Label Content="Service auquel appartient l'utilisateur" HorizontalAlignment="Center" Foreground="White" Margin="0,25,0,0"></Label>
+            <ComboBox Name="ServicesCombo" ItemsSource="{Binding AvailableServices}">
+            </ComboBox>
+
+
+
+            <UniformGrid>
+                <Label Content="Prénom de l'utilisateur" HorizontalAlignment="Center" Foreground="White" Margin="0,25,0,0"></Label>
+                <Label Content="Nom de l'utilisateur" HorizontalAlignment="Center"  Foreground="White" Margin="0,25,0,0"></Label>
+                <TextBox Name="Prenom" VerticalAlignment="Center" Background="#1c1a1a" Foreground="White" Margin="0,0,5,0"></TextBox>
+                <TextBox Name="Nom"  VerticalAlignment="Center" Background="#1c1a1a" Foreground="White" Margin="5,0,0,0"></TextBox>
+            </UniformGrid>
+            
+
+           
+
+            <Button Content="Créer un nouvel utilisateur" Margin="0,60,0,0" Click="CreateUserButtonClick"></Button>
+            <Label Name="Error" Content="..." Foreground="Red" HorizontalAlignment="Center"></Label>
+            
+            
+        </StackPanel>
+    </Grid>
+</Window>

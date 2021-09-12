@@ -1,0 +1,62 @@
+﻿<Window x:Class="VisualAutomationTool.AIODeleteUserDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisualAutomationTool"
+        mc:Ignorable="d"
+        Title="AIODeleteUserDialog" Height="600" Width="800" Background="#2e2828">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1c1a1a"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#1c1a1a" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <Label Content="All In One - Suppression d'un utilisateur/sortant (LeLog, Active Directory, Microsoft, FTP)" Foreground="White" HorizontalAlignment="Center"></Label>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,25,0,25" Height="1"/>
+
+            <Label Foreground="White" Content="Utilisateur à supprimer" HorizontalAlignment="Center"></Label>
+            <TextBox Name="UserInput" VerticalAlignment="Center" Background="#1c1a1a" Foreground="White" KeyDown="OnKeyDownHandler"></TextBox> 
+            <ComboBox Name="ComboLLUsers" ItemsSource="{Binding LLUsers}" SelectionChanged="ComboLLUsersSelectionChanged"></ComboBox>
+            <UniformGrid Margin="0,10" >
+                <RadioButton Name="RadioExStaff" Content="Passer en ex-staff" IsChecked="True" Foreground="White" HorizontalAlignment="Center"></RadioButton>
+                <RadioButton Name="RadioDeleteStaff" Content="Supprimer" Foreground="White" HorizontalAlignment="Center"></RadioButton>
+            </UniformGrid>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,0,0,25" Height="1"/>
+
+            <CheckBox Name="CheckBoxAD" Foreground="White" Content="Supprimer sur l'AD" HorizontalAlignment="Center"></CheckBox>
+            <ComboBox Name="ComboADUsers" ItemsSource="{Binding ADUsers}"></ComboBox>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,25,0,25" Height="1"/>
+
+            <CheckBox Name="CheckBoxMicro" Foreground="White" Content="Supprimer sur Microsoft" HorizontalAlignment="Center"></CheckBox>
+            <ComboBox Name="ComboMicroUsers" ItemsSource="{Binding MicroUsers}"></ComboBox>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,25,0,25" Height="1"/>
+
+            <CheckBox Name="CheckBoxFTP" Foreground="White" Content="Supprimer les accès FTP" HorizontalAlignment="Center"></CheckBox>
+            <ComboBox Name="ComboFTPUsers" ItemsSource="{Binding FTPUsers}"></ComboBox>
+
+            <Button Name="ButtonDeleteUser" Content="Supprimer l'utilisateur sur les systèmes sélectionnés" Margin="0,50,0,0" Click="ButtonCreateUserClick"></Button>
+            <Label Name="Error" Foreground="Red"></Label>
+        </StackPanel>
+    </Grid>
+</Window>

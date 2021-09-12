@@ -1,0 +1,111 @@
+﻿<Window x:Class="VisualAutomationTool.AIOCreateUserDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisualAutomationTool"
+        mc:Ignorable="d"
+        Title="AIOCreateUserDialog" Height="700" Width="800" Background="#2e2828">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1c1a1a"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#1c1a1a" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <Label Content="All In One - Création d'un nouvel utilisateur/entrant (LeLog, Active Directory, Microsoft, FTP)" Foreground="White"></Label>
+            <CheckBox Name="CheckBoxMailToSupport" HorizontalAlignment="Center" Foreground="White" Content="Signaler la création par mail à support@incomm.fr" IsChecked="True"></CheckBox>
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,25,0,0" Height="1"/>
+
+            
+            <UniformGrid>
+                <Label Content="Prénom de l'utilisateur" HorizontalAlignment="Center" Foreground="White"></Label>
+                <Label Content="Nom de l'utilisateur" HorizontalAlignment="Center"  Foreground="White" ></Label>
+                <TextBox Name="Prenom" VerticalAlignment="Center" Background="#1c1a1a" Foreground="White" Margin="5,0,5,0"></TextBox>
+                <TextBox Name="Nom"  VerticalAlignment="Center" Background="#1c1a1a" Foreground="White" Margin="5,0,5,0"></TextBox>
+            </UniformGrid>
+
+            <UniformGrid HorizontalAlignment="Center">
+                <RadioButton Name="RadioCustomTemplate" Content="Personnalisé" Foreground="White" IsChecked="True"  HorizontalAlignment="Center" VerticalAlignment="Center" Click="RadioCustomTemplateClick"></RadioButton>
+                <RadioButton Name="RadioRMTemplate" Content="Modèle RM" Foreground="White"  HorizontalAlignment="Center" VerticalAlignment="Center" Click="RadioRMTemplateClick"></RadioButton>
+            </UniformGrid>
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,0,0,5" Height="1"/>
+
+
+            <StackPanel>
+                <CheckBox Name="CheckBoxLL" Content="LeLog" IsChecked="True" IsEnabled="False" Foreground="Gray"></CheckBox>
+                <UniformGrid>
+                    <Label Content="Service d'appartenance" Foreground="White" HorizontalAlignment="Center"></Label>
+                    <Label Content="Agence d'appartenance" Foreground="White"  HorizontalAlignment="Center"></Label>
+                    <ComboBox Name="ComboLLServices" ItemsSource="{Binding LLServices}" Margin="5,0,5,0"></ComboBox>
+                    <ComboBox Name="ComboLLAgences" ItemsSource="{Binding LLAgences}" Margin="5,0,5,0"></ComboBox>
+                    
+                    
+                </UniformGrid>
+
+                <UniformGrid>
+                    <Label Content="Date d'entrée" Foreground="White" HorizontalAlignment="Center"></Label>
+                    <Label  Content="Date de sortie" Foreground="White" HorizontalAlignment="Center"></Label>
+
+                    <DatePicker Name="DateIn"  Margin="25,0,25,0"></DatePicker>
+                    <DatePicker Name="DateOut"  Margin="25,0,25,0"></DatePicker>
+                </UniformGrid>
+
+                <UniformGrid>
+                    <CheckBox Name="CheckboxSuivi" Foreground="White" Checked="SuiviRadioButtonChecked">Suivi ?</CheckBox>
+                    <CheckBox Name="CheckBoxStagiaire" Foreground="White" Checked="StagiaireRadioButtonChecked">Stagiaire ?</CheckBox>
+                    <CheckBox Name="CheckBoxNonPhysique" Foreground="White">Personne virtuelle/Morale ?</CheckBox>
+                </UniformGrid>
+                
+            </StackPanel>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,25,0,25" Height="1"/>
+
+
+            <StackPanel>
+                <CheckBox Name="CheckBoxAD" Content="Active directory" Foreground="White" Margin="0,-20,0,0"></CheckBox>
+                <ComboBox Name="ComboADServices" ItemsSource="{Binding ADServices}"></ComboBox>
+            </StackPanel>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,25,0,25" Height="1"/>
+
+
+            <StackPanel>
+                    <CheckBox Name="CheckBoxMicro" Content="Microsoft" Foreground="White" Margin="0,-20,0,0"></CheckBox>
+                    <StackPanel Margin="0,-10,0,0">
+                        <Label Name="LabelRemainingAvailableBasicLicenses" Foreground="White"></Label>
+                        <Label Name="LabelRemainingAvailableStandardLicenses" Foreground="White"></Label>
+                    </StackPanel>
+                <ComboBox Name="ComboMicroLicences" ItemsSource="{Binding MicroLicences}" Margin="0,0,0,0"></ComboBox>
+            </StackPanel>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,25,0,25" Height="1"/>
+
+
+            <StackPanel>
+                <CheckBox Name="CheckBoxFTP" Content="FTP" Foreground="White"></CheckBox>
+            </StackPanel>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Margin="0,25,0,25" Height="1"/>
+
+            <Button Content="Créer le nouvel utilisateur/entrant" Click="ButtonCreateUserClick"></Button>
+            <Label Name="Error" Foreground="Red"></Label>
+
+        </StackPanel>
+    </Grid>
+</Window>
